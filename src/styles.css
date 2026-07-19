@@ -70,10 +70,10 @@
   background-size: 48px 48px;
 }
 
-@utility no-scrollbar {
+.no-scrollbar {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
-@utility no-scrollbar::-webkit-scrollbar {
+.no-scrollbar::-webkit-scrollbar {
   display: none;
 }
