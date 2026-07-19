@@ -16,6 +16,8 @@ export type Database = {
     Tables: {
       orders: {
         Row: {
+          address: string | null
+          application: string | null
           created_at: string
           device_type: string | null
           duration: string
@@ -28,6 +30,8 @@ export type Database = {
           status: string
         }
         Insert: {
+          address?: string | null
+          application?: string | null
           created_at?: string
           device_type?: string | null
           duration: string
@@ -40,6 +44,8 @@ export type Database = {
           status?: string
         }
         Update: {
+          address?: string | null
+          application?: string | null
           created_at?: string
           device_type?: string | null
           duration?: string
