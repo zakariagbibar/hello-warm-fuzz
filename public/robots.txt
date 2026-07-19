@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://hello-warm-fuzz.lovable.app/sitemap.xml
+Sitemap: https://hello-warm-fuzz.lovable.app/api/sitemap.xml
