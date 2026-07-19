@@ -10,6 +10,8 @@ interface SitemapEntry {
 }
 
 export const Route = createFileRoute("/api/sitemap.xml")({
+  // @ts-expect-error server route options augmentation
+
   server: {
     handlers: {
       GET: async () => {
