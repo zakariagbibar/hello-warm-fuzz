@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://hello-warm-fuzz.lovable.app/sitemap.xml
