@@ -1,24 +1,41 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute } from '@tanstack/react-router';
+import { useState } from 'react';
+import Navbar from '@/components/Navbar';
+import Hero from '@/components/Hero';
+import Marquee from '@/components/Marquee';
+import About from '@/components/About';
+import Channels from '@/components/Channels';
+import Pricing from '@/components/Pricing';
+import Devices from '@/components/Devices';
+import Reviews from '@/components/Reviews';
+import Faq from '@/components/Faq';
+import Contact from '@/components/Contact';
+import Footer from '@/components/Footer';
+import CheckoutModal from '@/components/CheckoutModal';
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
-export const Route = createFileRoute("/")({
+export const Route = createFileRoute('/')({
   component: Index,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
 function Index() {
+  const [selectedPlan, setSelectedPlan] = useState<string | null>(null);
+
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
+    <div className="min-h-screen bg-ink-950 text-white selection:bg-emerald-500/30 selection:text-white">
+      <Navbar />
+      <main>
+        <Hero />
+        <Marquee />
+        <About />
+        <Channels />
+        <Pricing onSelectPlan={setSelectedPlan} />
+        <Devices />
+        <Reviews />
+        <Faq />
+        <Contact />
+      </main>
+      <Footer />
+      <CheckoutModal planId={selectedPlan} onClose={() => setSelectedPlan(null)} />
     </div>
   );
 }
