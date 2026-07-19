@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import type {} from "@tanstack/react-start";
+import "@tanstack/react-start";
 
 const BASE_URL = "https://hello-warm-fuzz.lovable.app";
 
@@ -9,7 +9,9 @@ interface SitemapEntry {
   priority?: string;
 }
 
-export const Route = createFileRoute("/sitemap.xml")({
+export const Route = createFileRoute("/api/sitemap.xml")({
+  // @ts-expect-error server route options augmentation
+
   server: {
     handlers: {
       GET: async () => {

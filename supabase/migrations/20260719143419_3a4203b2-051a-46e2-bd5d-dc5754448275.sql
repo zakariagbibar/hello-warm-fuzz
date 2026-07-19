@@ -1,0 +1,1 @@
+ALTER TABLE public.orders ADD COLUMN IF NOT EXISTS address TEXT, ADD COLUMN IF NOT EXISTS application TEXT;
