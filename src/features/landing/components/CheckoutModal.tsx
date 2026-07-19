@@ -124,13 +124,46 @@ export default function CheckoutModal({ planId, onClose }: { planId: string | nu
 
               <div className="space-y-4">
                 <div>
-                  <label className="block text-sm font-medium text-slate-300 mb-1.5">Full Name</label>
-                  <input type="text" required value={name} onChange={(e) => setName(e.target.value)} placeholder="John Doe" className="w-full px-4 py-3 rounded-xl bg-ink-850 border border-white/10 text-white placeholder-slate-500 focus:border-emerald-500/50 focus:ring-2 focus:ring-emerald-500/20 outline-none transition-all" />
+                  <label className="block text-sm font-medium text-slate-300 mb-1.5">Plan</label>
+                  <div className="grid grid-cols-2 gap-2">
+                    {plans.map((p) => (
+                      <button
+                        key={p.id}
+                        type="button"
+                        onClick={() => setSelectedPlanId(p.id)}
+                        className={`flex items-center justify-between p-3 rounded-xl border transition-all text-left ${selectedPlanId === p.id ? 'bg-emerald-500/10 border-emerald-500/40' : 'bg-ink-850 border-white/10 hover:border-white/20'}`}
+                      >
+                        <span className="text-sm text-white font-medium">{p.name}</span>
+                        <span className={`text-sm font-bold ${selectedPlanId === p.id ? 'text-emerald-400' : 'text-slate-300'}`}>${p.price}</span>
+                      </button>
+                    ))}
+                  </div>
                 </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-slate-300 mb-1.5">Full Name</label>
+                  <input type="text" required value={name} onChange={(e) => setName(e.target.value)} maxLength={100} placeholder="John Doe" className="w-full px-4 py-3 rounded-xl bg-ink-850 border border-white/10 text-white placeholder-slate-500 focus:border-emerald-500/50 focus:ring-2 focus:ring-emerald-500/20 outline-none transition-all" />
+                </div>
+
                 <div>
                   <label className="block text-sm font-medium text-slate-300 mb-1.5">Email</label>
-                  <input type="email" required value={email} onChange={(e) => setEmail(e.target.value)} placeholder="john@example.com" className="w-full px-4 py-3 rounded-xl bg-ink-850 border border-white/10 text-white placeholder-slate-500 focus:border-emerald-500/50 focus:ring-2 focus:ring-emerald-500/20 outline-none transition-all" />
+                  <input type="email" required value={email} onChange={(e) => setEmail(e.target.value)} maxLength={255} placeholder="john@example.com" className="w-full px-4 py-3 rounded-xl bg-ink-850 border border-white/10 text-white placeholder-slate-500 focus:border-emerald-500/50 focus:ring-2 focus:ring-emerald-500/20 outline-none transition-all" />
                 </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-slate-300 mb-1.5">Address</label>
+                  <textarea required value={address} onChange={(e) => setAddress(e.target.value)} maxLength={300} rows={2} placeholder="Street, City, Country" className="w-full px-4 py-3 rounded-xl bg-ink-850 border border-white/10 text-white placeholder-slate-500 focus:border-emerald-500/50 focus:ring-2 focus:ring-emerald-500/20 outline-none transition-all resize-none" />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-slate-300 mb-1.5">Application</label>
+                  <select value={application} onChange={(e) => setApplication(e.target.value)} className="w-full px-4 py-3 rounded-xl bg-ink-850 border border-white/10 text-white focus:border-emerald-500/50 focus:ring-2 focus:ring-emerald-500/20 outline-none transition-all">
+                    {applicationOptions.map((a) => (
+                      <option key={a} value={a} className="bg-ink-900">{a}</option>
+                    ))}
+                  </select>
+                </div>
+
                 <div>
                   <label className="block text-sm font-medium text-slate-300 mb-1.5">Primary Device</label>
                   <div className="grid grid-cols-4 gap-2">
@@ -141,6 +174,14 @@ export default function CheckoutModal({ planId, onClose }: { planId: string | nu
                       </button>
                     ))}
                   </div>
+                </div>
+
+                <div className="rounded-xl bg-ink-850 border border-white/5 p-4 flex items-center justify-between">
+                  <div>
+                    <div className="text-xs text-slate-400">Total ({plan.duration})</div>
+                    <div className="text-xs text-slate-500">{plan.name} · {application}</div>
+                  </div>
+                  <div className="font-display font-black text-2xl text-emerald-400">${plan.price}</div>
                 </div>
               </div>
 
