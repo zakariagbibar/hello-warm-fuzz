@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Menu, X, Tv } from 'lucide-react';
+import { Tv } from 'lucide-react';
 
 const links = [
   { label: 'Home', href: '#home' },
@@ -14,7 +14,6 @@ const links = [
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
-  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -31,8 +30,8 @@ export default function Navbar() {
           : 'py-5 bg-transparent shadow-none'
       }`}
     >
-      <nav className="max-w-7xl mx-auto px-5 sm:px-8 flex items-center justify-between">
-        <a href="#home" className="flex items-center gap-2.5 group">
+      <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-4">
+        <a href="#home" className="flex shrink-0 items-center gap-2.5 group">
           <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-400 to-teal-600 flex items-center justify-center shadow-lg shadow-emerald-500/30 group-hover:scale-105 transition-transform">
             <Tv className="w-5 h-5 text-white" strokeWidth={2.5} />
           </div>
@@ -41,12 +40,12 @@ export default function Navbar() {
           </span>
         </a>
 
-        <ul className="hidden lg:flex items-center gap-1">
+        <ul className="flex items-center gap-1 overflow-x-auto no-scrollbar">
           {links.map((l) => (
-            <li key={l.href}>
+            <li key={l.href} className="shrink-0">
               <a
                 href={l.href}
-                className="px-4 py-2 text-sm font-medium text-slate-300 hover:text-white rounded-lg hover:bg-white/5 transition-colors"
+                className="block px-2 sm:px-3 lg:px-4 py-2 text-xs sm:text-sm font-medium text-slate-300 hover:text-white rounded-lg hover:bg-white/5 transition-colors whitespace-nowrap"
               >
                 {l.label}
               </a>
@@ -54,50 +53,13 @@ export default function Navbar() {
           ))}
         </ul>
 
-        <div className="hidden lg:flex items-center gap-3">
-          <a
-            href="#pricing"
-            className="px-5 py-2.5 text-sm font-semibold text-white bg-gradient-to-r from-emerald-500 to-teal-600 rounded-xl shadow-lg shadow-emerald-500/30 hover:shadow-emerald-500/50 hover:-translate-y-0.5 transition-all"
-          >
-            Subscribe Now
-          </a>
-        </div>
-
-        <button
-          onClick={() => setOpen(!open)}
-          className="lg:hidden w-10 h-10 flex items-center justify-center text-white rounded-lg hover:bg-white/5"
-          aria-label="Menu"
+        <a
+          href="#pricing"
+          className="shrink-0 px-4 py-2 text-xs sm:text-sm font-semibold text-white bg-gradient-to-r from-emerald-500 to-teal-600 rounded-xl shadow-lg shadow-emerald-500/30 hover:shadow-emerald-500/50 hover:-translate-y-0.5 transition-all whitespace-nowrap"
         >
-          {open ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-        </button>
+          Subscribe Now
+        </a>
       </nav>
-
-      {open && (
-        <div className="lg:hidden absolute top-full left-0 right-0 glass border-t border-white/5 max-h-[calc(100vh-5rem)] overflow-y-auto">
-          <ul className="px-5 py-4 space-y-1 max-w-7xl mx-auto">
-            {links.map((l) => (
-              <li key={l.href}>
-                <a
-                  href={l.href}
-                  onClick={() => setOpen(false)}
-                  className="block px-4 py-3 text-base font-medium text-slate-200 hover:text-white hover:bg-white/5 rounded-lg"
-                >
-                  {l.label}
-                </a>
-              </li>
-            ))}
-            <li className="pt-2">
-              <a
-                href="#pricing"
-                onClick={() => setOpen(false)}
-                className="block px-4 py-3 text-center text-base font-semibold text-white bg-gradient-to-r from-emerald-500 to-teal-600 rounded-xl"
-              >
-                Subscribe Now
-              </a>
-            </li>
-          </ul>
-        </div>
-      )}
     </header>
   );
 }
