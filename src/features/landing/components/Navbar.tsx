@@ -73,8 +73,8 @@ export default function Navbar() {
       </nav>
 
       {open && (
-        <div className="lg:hidden glass border-t border-white/5 mt-3">
-          <ul className="px-5 py-4 space-y-1">
+        <div className="lg:hidden absolute top-full left-0 right-0 glass border-t border-white/5 max-h-[calc(100vh-5rem)] overflow-y-auto">
+          <ul className="px-5 py-4 space-y-1 max-w-7xl mx-auto">
             {links.map((l) => (
               <li key={l.href}>
                 <a
