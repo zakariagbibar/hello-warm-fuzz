@@ -10,18 +10,33 @@ const deviceOptions = [
   { id: 'apple-tv', label: 'Apple TV', icon: Monitor },
 ];
 
+const applicationOptions = [
+  'IPTV Smarters Pro',
+  'TiviMate',
+  'IBO Player',
+  'Smart IPTV (SIPTV)',
+  'GSE Smart IPTV',
+  'Perfect Player',
+  'Other',
+];
+
 export default function CheckoutModal({ planId, onClose }: { planId: string | null; onClose: () => void }) {
-  const plan = plans.find((p) => p.id === planId);
+  const [selectedPlanId, setSelectedPlanId] = useState<string | null>(planId);
+  const plan = plans.find((p) => p.id === selectedPlanId);
   const [step, setStep] = useState<1 | 2 | 3>(1);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
+  const [address, setAddress] = useState('');
+  const [application, setApplication] = useState(applicationOptions[0]);
   const [device, setDevice] = useState('smart-tv');
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
   const [errorMsg, setErrorMsg] = useState('');
 
   useEffect(() => {
     if (planId) {
-      setStep(1); setStatus('idle'); setName(''); setEmail(''); setDevice('smart-tv');
+      setSelectedPlanId(planId);
+      setStep(1); setStatus('idle');
+      setName(''); setEmail(''); setAddress(''); setApplication(applicationOptions[0]); setDevice('smart-tv');
     }
   }, [planId]);
 
@@ -35,11 +50,22 @@ export default function CheckoutModal({ planId, onClose }: { planId: string | nu
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!name.trim() || !email.trim() || !address.trim()) {
+      setStatus('error'); setErrorMsg('Please fill in all required fields.');
+      return;
+    }
     setStatus('submitting'); setErrorMsg('');
     try {
       const { error } = await supabase.from('orders').insert({
-        name: name.trim(), email: email.trim(), plan: plan.name,
-        duration: plan.duration, price: plan.price, device_type: device, status: 'pending',
+        name: name.trim(),
+        email: email.trim(),
+        address: address.trim(),
+        application,
+        plan: plan.name,
+        duration: plan.duration,
+        price: plan.price,
+        device_type: device,
+        status: 'pending',
       });
       if (error) throw error;
       setStatus('success'); setStep(3);
