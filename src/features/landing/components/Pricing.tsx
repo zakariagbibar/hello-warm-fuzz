@@ -53,7 +53,7 @@ export default function Pricing({ onSelectPlan }: { onSelectPlan: (id: string) =
                 onClick={() => onSelectPlan(plan.id)}
                 className={`w-full py-3.5 rounded-xl font-semibold transition-all ${plan.popular ? 'bg-gradient-to-r from-emerald-500 to-teal-600 text-white shadow-lg shadow-emerald-500/30 hover:shadow-emerald-500/50 hover:-translate-y-0.5' : 'bg-white/5 border border-white/10 text-white hover:bg-white/10'}`}
               >
-                Subscribe Now
+                Buy Now
               </button>
             </div>
           ))}
