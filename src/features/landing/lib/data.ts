@@ -37,6 +37,25 @@ export const plans: Plan[] = [
     originalPrice: 49,
     duration: '3 Months',
     connections: 1,
+    features: [
+      '15,000+ Live Channels',
+      '60,000+ Movies & Series (VOD)',
+      'Full HD / 4K Ultra HD',
+      '1 Simultaneous Connection',
+      'All Devices Supported',
+      'Anti-Freeze Technology',
+      '24/7 Priority Support',
+      'Free Setup Assistance',
+    ],
+  },
+  {
+    id: '6m',
+    name: '6 Months',
+    tagline: 'Great mid-term value',
+    price: 45,
+    originalPrice: 79,
+    duration: '6 Months',
+    connections: 1,
     popular: true,
     features: [
       '15,000+ Live Channels',
@@ -69,6 +88,7 @@ export const plans: Plan[] = [
     ],
   },
 ];
+
 
 export type Channel = {
   name: string;
