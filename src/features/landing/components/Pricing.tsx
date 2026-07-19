@@ -14,9 +14,10 @@ export default function Pricing({ onSelectPlan }: { onSelectPlan: (id: string) =
           <p className="text-slate-400 text-lg">Simple, transparent pricing. No hidden fees, no contracts. Cancel anytime.</p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
           {plans.map((plan) => (
             <div key={plan.id} className={`relative rounded-3xl p-7 transition-all ${plan.popular ? 'bg-gradient-to-b from-emerald-500/10 to-ink-850 border-2 border-emerald-500/40 shadow-2xl shadow-emerald-500/20 lg:-translate-y-4' : 'bg-ink-850/60 border border-white/5 hover:border-emerald-500/20'}`}>
+
               {plan.popular && (
                 <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full bg-gradient-to-r from-emerald-500 to-teal-600 text-white text-xs font-bold flex items-center gap-1 shadow-lg shadow-emerald-500/40">
                   <Crown className="w-3 h-3" />
