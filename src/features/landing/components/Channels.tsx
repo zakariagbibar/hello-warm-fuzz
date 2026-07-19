@@ -23,12 +23,11 @@ export default function Channels() {
         </div>
 
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
-          {channels.map((c) => (
-            <div key={c.name} className="flex items-center gap-3 p-4 rounded-2xl bg-ink-850/60 border border-white/5 hover:border-emerald-500/20 hover:bg-ink-850 transition-all">
+          {channels.map((c, i) => (
+            <div key={i} className="flex items-center gap-3 p-4 rounded-2xl bg-ink-850/60 border border-white/5 hover:border-emerald-500/20 hover:bg-ink-850 transition-all">
               <div className="w-11 h-11 rounded-xl bg-emerald-500/10 flex items-center justify-center text-xl shrink-0">{c.logo}</div>
               <div className="min-w-0">
-                <div className="font-semibold text-white text-sm truncate">{c.name}</div>
-                <div className="text-xs text-slate-500">{c.category}</div>
+                <div className="text-xs text-slate-400">{c.category}</div>
               </div>
             </div>
           ))}
